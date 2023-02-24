@@ -280,11 +280,12 @@ let musicTheme = [
         "Naa Hrudayam"
     
 ]
+
 struct AppleMusicView: View {
     @State var searchText = ""
     @State var songs = [Item]()
     @State var listen = false
-
+    @State var nowPlaying = ""
     var filteredSongs: [Item] {
         if searchText.isEmpty {
             return songs
@@ -294,12 +295,15 @@ struct AppleMusicView: View {
         }
     }
     var body: some View {
+        Text(nowPlaying)
+            .foregroundColor(.red)
         NavigationView {
+            
             List(filteredSongs) { song in
-                Button {
-                    listen = true
-                } label: {
+              
                     HStack {
+                        
+                        
                         AsyncImage(url: song.imageURL)
                             .frame(width: 75, height: 75, alignment: .center)
                         VStack(alignment: .leading) {
@@ -314,13 +318,18 @@ struct AppleMusicView: View {
                                 .font(.footnote)
                             
                             
-                        }
-                        .padding()
+                            Link("", destination: song.previewURL)
+                              
+                     
+                            
+                            
+                        
                     }
+                   
+                   
+                        
                 }
-                .sheet(isPresented: $listen) {
-                    WebView(request: URLRequest(url: song.previewURL))
-                }
+                    
             }
             .searchable(text: $searchText) {
                 

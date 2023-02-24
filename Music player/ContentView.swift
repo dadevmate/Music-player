@@ -39,6 +39,7 @@ struct ContentView: View {
     @State var chosenColor = Color.red
     @State var musicView = false
     @State private var selection = 0
+
       let items = ["airpodspro", "airpods.gen3", "airpodsmax", "applelogo"]
     var body: some View {
         VStack {
@@ -100,7 +101,7 @@ struct ContentView: View {
                       
                         
                       
-                    
+             
         
                         
                     
@@ -153,13 +154,13 @@ struct ContentView: View {
 
                 }
             
-            
+      
             Picker(selection: $selection, label: Text("Options")) {
                             ForEach(0..<items.count) { index in
                                 Image(systemName: items[index])
                             }
                         }.pickerStyle(SegmentedPickerStyle())
-
+   
                             
          AppleMusicView()
                 
